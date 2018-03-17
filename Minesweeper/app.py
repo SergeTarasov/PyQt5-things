@@ -40,6 +40,7 @@ class MinesweeperWindow(Ui_MainWindow):
         self.addAllConnections()
         self.updateWindow()
 
+	
     def addAllConnections(self):
         
     #start screen
@@ -59,6 +60,7 @@ class MinesweeperWindow(Ui_MainWindow):
         self.actionRestart.triggered.connect(self.restartGame)
         self.actionExit.triggered.connect(self.exitAction)
         
+	
     def updateWindow(self):
         
         self.labelMines.setText(str(self.minesText))
@@ -86,6 +88,7 @@ class MinesweeperWindow(Ui_MainWindow):
         self.updateWindow()
         self.initGame()
         
+	
     def exitAction(self):
         sys.exit()
         
@@ -101,6 +104,7 @@ class MinesweeperWindow(Ui_MainWindow):
         self.size = (16,30)
         self.initGame()
         
+	
     def levelConnect(self):
         
         index = self.levelBox.currentText()
@@ -116,7 +120,6 @@ class MinesweeperWindow(Ui_MainWindow):
         self.updateWindow()
     
     
-    
     def initGame(self):
         
         self.time = 0
@@ -129,13 +132,13 @@ class MinesweeperWindow(Ui_MainWindow):
         self.initField()
         
         
-        
     def gameOver(self):
         self.timer.stop()
         self.openField(openAll = 1)
         self.currentSmile = 'mine'
         self.updateWindow()
         
+	
     def restartGame(self):
         
         self.timer.stop()
@@ -159,21 +162,22 @@ class MinesweeperWindow(Ui_MainWindow):
         positions = [(i,j) for i in range(self.size[0]) for j in range(self.size[1])]
     
         for position in positions:
-            
             self.gameGrid.addWidget(self.createRlckButton(), *position)
+	
         MainWindow.resize(*self.size)
         MainWindow.setMaximumSize(QtCore.QSize(self.size[1] * 20 +  13, self.size[0] * 20 + 82))
         
+	
     def openField(self, oplist = [], openAll = 0):
         
         if openAll == 1:
             oplist = self.game.restL.copy()
         
+	
         for i in oplist:
             
             fValue = self.game.rHint(i)
         
-            
             if i  in self.game.flags:
                 if openAll == 0:
                     continue
@@ -188,10 +192,10 @@ class MinesweeperWindow(Ui_MainWindow):
             
             if fValue == -1:
                 fValue = '*'
+		
             elif fValue == 0:
                 fValue = ' '
             
-            #label = QtWidgets.QLabel(str(fValue))
             lbl = QtWidgets.QLabel(str(fValue))
             label = dclkLabel(lbl)
             label.setAlignment( QtCore.Qt.AlignCenter )

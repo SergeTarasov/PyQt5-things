@@ -1,1 +1,1 @@
-IPA sounds
+International Phonetic Alphabet (IPA) sounds
